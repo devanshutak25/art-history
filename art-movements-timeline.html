@@ -808,6 +808,8 @@ function updateTimelineBarSelection(){
 function filterEra(era){
   se=se===era?null:era;
   render();
+  if(curView==="graph")drawGraph();
+  if(curView==="map")drawMap();
   if(se){
     const el=document.querySelector(".era-head");
     if(el)el.scrollIntoView({behavior:"smooth"});
@@ -966,7 +968,7 @@ function renderSidebar(){
     era.items.forEach(it=>{
       const k=era.era+"|"+it.name;
       const isActive=activeMovement&&activeMovement.key===k;
-      h+='<div class="md-item'+(isActive?' active':'')+'" data-md-key="'+esc(k)+'" style="color:'+c.accent+'" onclick="switchDetail(\''+k.replace(/'/g,"\\'")+'\')">';
+      h+='<div class="md-item'+(isActive?' active':'')+'" data-md-key="'+esc(k)+'" style="color:'+c.accent+'" onclick="switchDetail(\''+k.replace(/'/g,"\\'")+'\',true)">';
       h+='<span class="md-item-dot" style="background:'+c.accent+'"></span>';
       h+='<span class="md-item-name">'+esc(it.name)+'</span>';
       h+='<span class="md-item-period">'+esc(it.period)+'</span>';
@@ -1011,7 +1013,7 @@ function renderDetail(){
   detail.querySelectorAll('.card-body .section').forEach(s=>{s.style.opacity='1';s.style.transform='none'});
 }
 
-function switchDetail(key){
+function switchDetail(key,userClick){
   const parts=key.split("|");
   let found=null;
   for(const e of D)for(const i of e.items){
@@ -1027,6 +1029,7 @@ function switchDetail(key){
   });
   const activeEl=document.querySelector('.md-item.active');
   if(activeEl)activeEl.scrollIntoView({block:"nearest"});
+  if(userClick&&curView!=="timeline")switchView("timeline");
   renderDetail();
   // Close mobile drawer if open
   if(window.innerWidth<900){
