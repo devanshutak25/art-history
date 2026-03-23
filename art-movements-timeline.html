@@ -187,7 +187,7 @@ mark{background:var(--mark-bg);color:inherit;border-radius:2px;padding:0 1px}
 .nav-btn:active{transform:scale(0.97)}
 .wiki-thumb-wrap{float:right;margin:0 0 8px 16px;clear:right}
 .wiki-thumb-wrap:empty{display:none}
-.wiki-thumb{max-width:240px;max-height:200px;border-radius:6px;opacity:0;animation:fadeIn .4s ease forwards}
+.wiki-thumb{max-width:clamp(200px,30vw,400px);max-height:clamp(160px,25vw,340px);border-radius:6px;opacity:0;animation:fadeIn .4s ease forwards;width:auto;height:auto}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:.9;transform:translateY(0)}}
 .medium-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px}
 .med-tag{font-size:10px;padding:1px 6px;border-radius:3px;font-family:'IBM Plex Mono',monospace;opacity:.7}
@@ -279,7 +279,7 @@ main{flex:1;overflow:hidden;display:flex;flex-direction:column}
 .timeline{padding:12px 12px 80px}
 .card{padding:12px}
 .compare-grid{grid-template-columns:1fr!important}
-.wiki-thumb{max-width:140px;max-height:120px}
+.wiki-thumb{max-width:clamp(120px,35vw,180px);max-height:clamp(100px,28vw,150px)}
 .wiki-thumb-wrap{margin:0 0 6px 10px}
 /* Show filter toggle, hide raw filters */
 .filter-toggle{display:flex}
