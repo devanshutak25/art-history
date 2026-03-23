@@ -75,7 +75,6 @@ nav[aria-label="Filters"]{animation-delay:200ms}
 .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
 .ctrl-btn{background:none;border:none;color:var(--dim);font-size:12px;font-family:'IBM Plex Mono',monospace;cursor:pointer;padding:2px 4px;transition:color .15s}
 .ctrl-btn:hover{color:var(--fg)}.ctrl-btn:active{opacity:.7}
-.ctrl-btn.active-mode{color:#FFF;background:#D94F4F;border-radius:3px;padding:2px 8px}
 .timeline-bar{width:28px;flex-shrink:0;display:flex;flex-direction:column;cursor:pointer;position:relative;border-left:1px solid var(--border);border-right:1px solid var(--border)}
 .tbar-label{display:none}
 .tbar-seg{width:100%;position:relative;transition:opacity .15s,filter .15s;min-height:2px;border-bottom:1px solid rgba(0,0,0,0.15)}
@@ -198,18 +197,6 @@ mark{background:var(--mark-bg);color:inherit;border-radius:2px;padding:0 1px}
 /* Era indicator */
 .era-ind{position:fixed;top:auto;bottom:70px;right:24px;background:var(--tooltip-bg);color:var(--tooltip-fg);padding:4px 10px;border-radius:4px;font-size:11px;font-family:'IBM Plex Mono',monospace;z-index:200;pointer-events:none;opacity:0;transform:translateX(4px);transition:opacity .2s ease,transform .2s ease;max-width:200px;text-align:right}
 .era-ind.show{opacity:1;transform:translateX(0)}
-/* Compare tray */
-.compare-tray{position:fixed;bottom:0;left:0;right:0;background:var(--tray-bg);border-top:2px solid var(--tray-border);z-index:150;padding:12px 24px;transform:translateY(100%);opacity:0;pointer-events:none;transition:transform .3s cubic-bezier(0.4,0,0.2,1),opacity .2s ease,background .3s}
-.compare-tray.show{transform:translateY(0);opacity:1;pointer-events:auto}
-.compare-tray h2{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--dim);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;font-weight:400}
-.compare-grid{display:grid;gap:12px;font-size:12px}
-.compare-col{min-width:0}
-.compare-col h3{font-family:'Instrument Serif',Georgia,serif;font-size:15px;font-weight:400;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.compare-row{margin-bottom:4px}
-.compare-row .clbl{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--dim);letter-spacing:.5px}
-.compare-row .cval{font-size:11.5px;line-height:1.5}
-.compare-close{position:absolute;top:8px;right:16px;background:none;border:none;color:var(--dim);font-size:16px;cursor:pointer}
-.compare-tray .remove-btn{background:none;border:none;color:#D94F4F;font-size:10px;cursor:pointer;font-family:'IBM Plex Mono',monospace;margin-left:4px}
 /* Graph view */
 #graph-view{width:100%;height:100%;position:relative}
 #graph-canvas{width:100%;height:100%;cursor:grab}
@@ -227,7 +214,7 @@ mark{background:var(--mark-bg);color:inherit;border-radius:2px;padding:0 1px}
 .inf-link:focus-visible{outline:2px solid currentColor;outline-offset:2px;border-radius:2px}
 .nav-btn:focus-visible,.ctrl-btn:focus-visible,.filter-btn:focus-visible,.view-btn:focus-visible,.tag-fbtn:focus-visible,.btt:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 /* Mobile filter drawer */
-.filter-toggle{display:none;padding:8px 14px;font-size:12px;font-family:'IBM Plex Mono',monospace;background:transparent;color:var(--dim2);border:1px solid var(--filter-border);border-radius:4px;cursor:pointer;width:100%;text-align:left;margin-bottom:6px;min-height:44px;align-items:center}
+.filter-toggle{display:flex;padding:8px 14px;font-size:12px;font-family:'IBM Plex Mono',monospace;background:transparent;color:var(--dim2);border:1px solid var(--filter-border);border-radius:4px;cursor:pointer;width:100%;text-align:left;margin-bottom:6px;min-height:44px;align-items:center}
 .filter-toggle:hover{border-color:#666;color:var(--fg)}
 .filter-toggle .arrow{display:inline-block;transition:transform .2s;margin-right:6px}
 .filter-toggle.open .arrow{transform:rotate(90deg)}
@@ -278,11 +265,8 @@ main{flex:1;overflow:hidden;display:flex;flex-direction:column}
 .search{padding:12px 14px;font-size:16px;margin-bottom:6px}
 .timeline{padding:12px 12px 80px}
 .card{padding:12px}
-.compare-grid{grid-template-columns:1fr!important}
 .wiki-thumb{max-width:clamp(120px,35vw,180px);max-height:clamp(100px,28vw,150px)}
 .wiki-thumb-wrap{margin:0 0 6px 10px}
-/* Show filter toggle, hide raw filters */
-.filter-toggle{display:flex}
 /* Touch-friendly targets */
 .view-btn{min-height:44px;padding:10px 14px;font-size:13px}
 .filter-btn{min-height:38px;padding:8px 12px;font-size:12px}
@@ -291,13 +275,10 @@ main{flex:1;overflow:hidden;display:flex;flex-direction:column}
 .nav-btn{min-height:44px;padding:10px 14px;font-size:12px}
 .concept-pill{min-height:32px;padding:6px 12px;font-size:12px;display:inline-flex;align-items:center}
 .res-link{min-height:36px;padding:6px 10px;font-size:12px}
-.compare-close{min-width:44px;min-height:44px;font-size:20px;display:flex;align-items:center;justify-content:center}
 .btt{width:48px;height:48px;bottom:16px;right:16px}
 .era-ind{bottom:70px;right:16px;font-size:10px}
 /* Hide vertical timeline bar on mobile */
 .timeline-bar{display:none}
-/* Compare tray padding for bottom */
-.compare-tray{padding:12px 12px 20px;max-height:50vh;overflow-y:auto}
 /* Concept tooltip positioning */
 .concept-def{position:fixed;bottom:auto;top:50%;left:50%;transform:translate(-50%,-50%);min-width:250px;max-width:85vw;z-index:200}
 /* Card head wraps on narrow screens */
@@ -342,7 +323,8 @@ main{flex:1;overflow:hidden;display:flex;flex-direction:column}
       <h1>Art Movements</h1>
       <p class="meta" id="meta" aria-live="polite" aria-atomic="true"></p>
     </div>
-    <div style="display:flex;gap:6px;align-items:center">
+    <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+      <button class="ctrl-btn" onclick="randomMovement()" title="Random movement (r)" aria-label="Show random movement">&#127922;</button>
       <button class="ctrl-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle light/dark theme">&#9788;</button>
     </div>
   </div>
@@ -353,18 +335,12 @@ main{flex:1;overflow:hidden;display:flex;flex-direction:column}
     <button class="view-btn" data-view="graph">&#8859; Graph</button>
     <button class="view-btn" data-view="map">&#9678; Map</button>
   </div>
-  <button class="filter-toggle" id="filter-toggle" onclick="toggleFilterDrawer()" aria-expanded="false" aria-controls="filter-drawer"><span class="arrow">&#9654;</span> Filters &amp; Tools</button>
+  <button class="filter-toggle" id="filter-toggle" onclick="toggleFilterDrawer()" aria-expanded="false" aria-controls="filter-drawer"><span class="arrow">&#9654;</span> Filters</button>
   <div id="filter-drawer" class="filter-drawer collapsed">
   <nav aria-label="Filters">
   <div class="filters" id="filters" role="group" aria-label="Era filters"></div>
   <div class="tag-filters" id="tag-filters" role="group" aria-label="Medium filters"></div>
   </nav>
-  <div class="controls">
-    <button class="ctrl-btn" onclick="expandAll()">Expand All</button>
-    <button class="ctrl-btn" onclick="collapseAll()">Collapse All</button>
-    <button class="ctrl-btn" id="compare-btn" onclick="toggleCompare()">Compare</button>
-    <button class="ctrl-btn" onclick="randomMovement()" title="Random movement (r)" aria-label="Show random movement">&#127922; random</button>
-  </div>
   </div>
   <div class="onboard-hint" id="onboard-hint">Browse movements in the sidebar &middot; Try the Graph view to see connections &middot; Press R for a random discovery <button class="dismiss" onclick="dismissOnboard()" aria-label="Dismiss hint">&times;</button></div>
 </header>
@@ -385,7 +361,6 @@ main{flex:1;overflow:hidden;display:flex;flex-direction:column}
 </main>
 <button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">&#8593;</button>
 <div class="era-ind" id="era-ind"></div>
-<aside class="compare-tray" id="compare-tray" role="complementary" aria-label="Movement comparison"><button class="compare-close" onclick="clearCompare()" aria-label="Close comparison panel">&#10005;</button><h2 id="compare-heading" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--dim);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;font-weight:400">Compare Movements</h2><div id="compare-content"></div></aside>
 <script>
 function w(s){return"https://en.wikipedia.org/wiki/"+s}
 const D=[
@@ -544,7 +519,7 @@ function getTextColor(era){
 }
 
 // State
-let ex=new Set(),se=new Set(),q="",curView="timeline",focIdx=-1,compareMode=false,compareItems=[],tagFilter=new Set();
+let ex=new Set(),se=new Set(),q="",curView="timeline",focIdx=-1,tagFilter=new Set();
 let detailMode=true,activeMovement=null;
 const wikiCache={};
 let allFiltered=[];
@@ -699,61 +674,6 @@ function goToMovement(name){
   }
 }
 
-// Compare
-function toggleCompare(){
-  compareMode=!compareMode;
-  document.getElementById("compare-btn").className="ctrl-btn"+(compareMode?" active-mode":"");
-  if(!compareMode){compareItems=[];renderCompare();}
-}
-
-function addToCompare(era,item){
-  if(!compareMode)return false;
-  const k=era+"|"+item.name;
-  if(compareItems.find(c=>c.k===k))return true;
-  if(compareItems.length>=3)return true;
-  compareItems.push({k,era,item});
-  renderCompare();
-  return true;
-}
-
-function removeFromCompare(k){
-  compareItems=compareItems.filter(c=>c.k!==k);
-  renderCompare();
-}
-
-function clearCompare(){
-  compareItems=[];compareMode=false;
-  document.getElementById("compare-btn").className="ctrl-btn";
-  document.body.style.paddingBottom="";
-  renderCompare();
-}
-
-function renderCompare(){
-  const tray=document.getElementById("compare-tray");
-  const cont=document.getElementById("compare-content");
-  if(!compareItems.length){tray.classList.remove("show");document.body.style.paddingBottom="";return;}
-  tray.classList.add("show");
-  document.getElementById("compare-heading").textContent="Comparing "+compareItems.length+" of 3";
-  // Add bottom padding so content isn't hidden behind tray
-  requestAnimationFrame(()=>{document.body.style.paddingBottom=tray.offsetHeight+"px";});
-  const cols=compareItems.length;
-  let h='<div class="compare-grid" style="grid-template-columns:repeat('+cols+',1fr)">';
-  compareItems.forEach(c=>{
-    const i=c.item;const col=EC[c.era];
-    h+='<div class="compare-col">';
-    h+='<h3 style="color:'+col.accent+'">'+esc(i.name)+' <button class="remove-btn" onclick="removeFromCompare(\''+c.k.replace(/'/g,"\\'")+'\')" aria-label="Remove '+esc(i.name)+' from comparison">[x]</button></h3>';
-    h+='<div class="compare-row"><div class="clbl">Period</div><div class="cval">'+esc(i.period)+'</div></div>';
-    if(i.geo)h+='<div class="compare-row"><div class="clbl">Origin</div><div class="cval">'+esc(i.geo.r)+'</div></div>';
-    if(i.cx)h+='<div class="compare-row"><div class="clbl">Concepts</div><div class="cval">'+i.cx.map(c=>esc(c.t)).join(", ")+'</div></div>';
-    h+='<div class="compare-row"><div class="clbl">Artists</div><div class="cval">'+i.artists.slice(0,3).map(a=>esc(an(a))).join(", ")+'</div></div>';
-    if(i.tg)h+='<div class="compare-row"><div class="clbl">Mediums</div><div class="cval">'+i.tg.join(", ")+'</div></div>';
-    const infs=[];if(i.by&&i.by.length)infs.push("Influenced by: "+i.by.join(", "));if(i.inf&&i.inf.length)infs.push("Influenced: "+i.inf.join(", "));
-    if(infs.length)h+='<div class="compare-row"><div class="clbl">Influences</div><div class="cval" style="font-size:10.5px">'+infs.map(esc).join("<br>")+'</div></div>';
-    h+='</div>';
-  });
-  h+='</div>';
-  cont.innerHTML=h;
-}
 
 // Random
 function randomMovement(){
@@ -764,9 +684,6 @@ function randomMovement(){
   if(curView!=="timeline")switchView("timeline");
 }
 
-// Expand/Collapse
-function expandAll(){const f=getFilteredEras();f.forEach(e=>e.items.forEach(i=>ex.add(e.era+"|"+i.name)));render()}
-function collapseAll(){ex.clear();updateHash(null);render()}
 
 // Medium tags
 function getAllTags(){
@@ -799,7 +716,7 @@ function renderTimelineBar(){
     const eMin=Math.min(...d.era.items.map(it=>it.sort));
     const eMax=Math.max(...d.era.items.map(it=>it.sort));
     const fmtBar=y=>{if(y<0){const a=Math.abs(y);return(a>=1000?'~'+(a/1000).toFixed(0)+'k':'~'+a)+' BCE';}return y>2000?'present':y+' CE';};
-    h+='<div class="tbar-seg" style="height:'+ht.toFixed(2)+'%;background:'+c.accent+';--tbar-accent:'+c.accent+'" data-era="'+esc(d.era.era)+'" onclick="filterEra(\''+eraEsc+'\')">';
+    h+='<div class="tbar-seg" style="height:'+ht.toFixed(2)+'%;background:'+c.accent+';--tbar-accent:'+c.accent+'" data-era="'+esc(d.era.era)+'" onclick="filterEra(\''+eraEsc+'\',event)">';
     h+='<div class="tbar-tooltip"><span class="tbar-tip-era">'+esc(d.era.era)+'</span><br><span class="tbar-tip-detail">'+d.era.items.length+' movements &middot; '+fmtBar(eMin)+' – '+fmtBar(eMax)+'</span></div>';
     h+='</div>';
   });
@@ -814,7 +731,7 @@ function renderMobileTimelineBar(){
     const c=EC[e.era];
     const isSelected=se.size>0&&se.has(e.era);
     const eraEsc=esc(e.era).replace(/'/g,"\\'");
-    h+='<div class="mtbar-seg'+(isSelected?' selected':'')+'" style="background:'+c.accent+'" data-era="'+esc(e.era)+'" onclick="filterEra(\''+eraEsc+'\')"></div>';
+    h+='<div class="mtbar-seg'+(isSelected?' selected':'')+'" style="background:'+c.accent+'" data-era="'+esc(e.era)+'" onclick="filterEra(\''+eraEsc+'\',event)"></div>';
   });
   bar.innerHTML=h;
 }
@@ -824,8 +741,12 @@ function updateTimelineBarSelection(){
   });
 }
 
-function filterEra(era){
-  if(se.has(era))se.delete(era);else{se.clear();se.add(era);}
+function filterEra(era,ev){
+  if(ev&&ev.shiftKey){
+    if(se.has(era))se.delete(era);else se.add(era);
+  }else{
+    if(se.has(era))se.delete(era);else{se.clear();se.add(era);}
+  }
   render();
   if(curView==="graph")drawGraph();
   if(curView==="map")drawMap();
@@ -1015,7 +936,6 @@ function renderDetail(){
   h+='<h2>'+nm+'</h2>';
   h+='<div class="period" style="color:'+tx+'">'+esc(item.period)+'</div>';
   h+='</div>';
-  h+='<button class="md-back-btn" onclick="randomMovement()">&#127922; Random</button>';
   h+='</div>';
 
   h+='<div class="card-body md-detail-body" style="color:'+tx+';max-height:none;overflow:visible">';
@@ -1604,6 +1524,15 @@ render();
 if(window.innerWidth<900){
   document.getElementById("md-drawer-btn").style.display="flex";
 }
+// Show filter drawer on desktop (start open)
+if(window.innerWidth>600){
+  const fd=document.getElementById("filter-drawer");
+  const ft=document.getElementById("filter-toggle");
+  fd.classList.remove("collapsed");
+  fd.style.maxHeight=fd.scrollHeight+"px";
+  ft.classList.add("open");
+  ft.setAttribute("aria-expanded","true");
+}
 
 // Resize handler for master-detail breakpoint
 window.addEventListener('resize',debounce(()=>{
@@ -1613,6 +1542,7 @@ window.addEventListener('resize',debounce(()=>{
     document.getElementById('md-sidebar').classList.remove('open');
     document.getElementById('md-backdrop').style.display='none';
   }
+  if(window.innerWidth>600)document.getElementById('filter-drawer').classList.remove('collapsed');
 },200));
 
 // Handle hash on load or pick random
