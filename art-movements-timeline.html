@@ -22,7 +22,7 @@
 --scroll-thumb:#333;--scroll-track:transparent;
 }
 [data-theme="light"]{
---bg:#F7F3ED;--fg:#2A2420;--fg2:#1A1610;--dim:#7A7068;--dim2:#5A524A;--border:#DDD5C8;
+--bg:#F7F3ED;--fg:#2A2420;--fg2:#1A1610;--dim:#645C54;--dim2:#4A4238;--border:#DDD5C8;
 --card-bg:#FFFDF8;--card-hover:rgba(0,0,0,0.04);--header-bg:#F7F3ED;
 --search-bg:#FFFDF8;--search-border:#C8BFA8;--filter-border:#C8BFA8;
 --mark-bg:rgba(200,160,50,0.25);--tooltip-bg:rgba(50,42,32,1.0);--tooltip-fg:#F0EBE2;
@@ -126,22 +126,24 @@ a.xlink:hover{opacity:1}
 .res-link:hover{opacity:1;background:rgba(255,255,255,0.05);transform:translateX(2px)}
 [data-theme="light"] .res-link:hover{background:rgba(0,0,0,0.04)}
 /* Light mode contrast fixes */
-[data-theme="light"] .card-head .period{opacity:.7}
-[data-theme="light"] .card-preview{opacity:.6}
-[data-theme="light"] .card-body .label{opacity:.85}
-[data-theme="light"] .res-link{opacity:.8}
-[data-theme="light"] .artwork-list li::before{opacity:.55}
-[data-theme="light"] .artwork-meta{opacity:.75}
-[data-theme="light"] .geo-label{opacity:.8}
-[data-theme="light"] .hx-text{opacity:.85}
-[data-theme="light"] .med-tag{opacity:.8}
-[data-theme="light"] .md-era-label{opacity:.75}
-[data-theme="light"] .md-item-period{opacity:.65}
-[data-theme="light"] .md-detail-header .period{opacity:.7}
-[data-theme="light"] .empty-hint{opacity:.65}
-[data-theme="light"] .onboard-hint .dismiss{opacity:.75}
-[data-theme="light"] .inf-link{opacity:.9}
-[data-theme="light"] .concept-pill{opacity:.95}
+[data-theme="light"] .card-head .period{opacity:.85}
+[data-theme="light"] .card-preview{opacity:.75}
+[data-theme="light"] .card-body .label{opacity:.9}
+[data-theme="light"] .res-link{opacity:.85}
+[data-theme="light"] .artwork-list li::before{opacity:.6}
+[data-theme="light"] .artwork-meta{opacity:.85}
+[data-theme="light"] .geo-label{opacity:.85}
+[data-theme="light"] .hx-text{opacity:.9}
+[data-theme="light"] .med-tag{opacity:.9}
+[data-theme="light"] .md-era-label{opacity:.9}
+[data-theme="light"] .md-item-period{opacity:.8}
+[data-theme="light"] .md-detail-header .period{opacity:.85}
+[data-theme="light"] .empty-hint{opacity:.85}
+[data-theme="light"] .empty-text{color:var(--dim2)}
+[data-theme="light"] .onboard-hint .dismiss{opacity:.9}
+[data-theme="light"] .inf-link{opacity:.95}
+[data-theme="light"] .concept-pill{opacity:1}
+[data-theme="light"] .era-head .count{color:var(--dim2)}
 [data-theme="light"] .filter-btn{color:var(--dim2);border-color:#B8AD98}
 [data-theme="light"] .filter-btn.active{background:#3A3228;color:#F7F3ED;border-color:#F7F3ED;border-style:dashed}
 [data-theme="light"] .tag-fbtn{color:var(--dim2);border-color:#C2B8A5}
@@ -502,15 +504,15 @@ const EC={
 "Contemporary (21st Century)":{accent:"#29B6C2",text:"#A8DDE2",textLight:"#1A7A83"}
 };
 const ECLight={
-"Prehistoric & Ancient Non-Western":{text:"#6B4420"},
-"Classical Mediterranean & Asian":{text:"#6B5A30"},
-"Medieval European":{text:"#4A3570"},
-"Renaissance & Early Modern":{text:"#2A6B4A"},
-"18th–19th Century":{text:"#7A5010"},
-"Early 20th Century Avant-Garde":{text:"#8B2020"},
-"Mid-20th Century":{text:"#1A5A8B"},
-"Late 20th Century":{text:"#5A6010"},
-"Contemporary (21st Century)":{text:"#1A7A83"}
+"Prehistoric & Ancient Non-Western":{text:"#4A2A10"},
+"Classical Mediterranean & Asian":{text:"#4A3A18"},
+"Medieval European":{text:"#351A55"},
+"Renaissance & Early Modern":{text:"#1A4A30"},
+"18th–19th Century":{text:"#5A3808"},
+"Early 20th Century Avant-Garde":{text:"#6A1515"},
+"Mid-20th Century":{text:"#0E3E68"},
+"Late 20th Century":{text:"#3A4008"},
+"Contemporary (21st Century)":{text:"#0E5A62"}
 };
 function getTextColor(era){
   const isLight=document.documentElement.getAttribute("data-theme")==="light";
