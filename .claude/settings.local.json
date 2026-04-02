@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node:*)",
+      "WebSearch",
+      "Bash(sed -n '376,404p' \"G:\\\\Personal\\\\art-history\\\\art-movements-timeline.html\")",
+      "Read(//tmp/**)",
+      "Bash(for line:*)",
+      "Bash(do echo:*)",
+      "Bash(python3:*)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebFetch(domain:www.moma.org)",
+      "Bash(grep -E \"\\\\.\\(html|js|json|css\\)$\")",
+      "Bash(grep -E \"\\\\.\\(css|html\\)$\")",
+      "Bash(grep -oP name:\"\"[^\"\"]*\"\" G:/Personal/art-history/index.html)",
+      "Bash(grep -o name:\"\"[^\"\"]*\"\" G:/Personal/art-history/index.html)",
+      "Bash(curl -s \"https://en.wikipedia.org/api/rest_v1/page/summary/Constant_Nieuwenhuys\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(''''thumbnail'''' in d, d.get\\(''''title'''',''''''''\\)\\)\")",
+      "Bash(curl -s \"https://en.wikipedia.org/api/rest_v1/page/summary/Alighiero_Boetti\")",
+      "Bash(curl -s \"https://en.wikipedia.org/api/rest_v1/page/summary/Cildo_Meireles\")",
+      "Bash(curl -s \"https://en.wikipedia.org/api/rest_v1/page/summary/Hermann_Nitsch\")",
+      "Bash(curl -s \"https://en.wikipedia.org/api/rest_v1/page/summary/Lygia_Pape\")",
+      "Bash(curl -s \"https://en.wikipedia.org/api/rest_v1/page/summary/G%C3%BCnter_Brus\")",
+      "Bash(curl -s \"https://en.wikipedia.org/api/rest_v1/page/summary/Rudolf_Schwarzkogler\")",
+      "Bash(curl -s \"https://en.wikipedia.org/api/rest_v1/page/summary/Otto_Muehl\")",
+      "Bash(grep:*)"
+    ]
+  }
+}
