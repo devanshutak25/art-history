@@ -740,6 +740,21 @@ function _fetchWikiThumbInner(item,el){
     .finally(()=>{_wikiActive--;_processWikiQueue();});
 }
 
+function _wikiThumbFromData(d){
+  const src=d.thumbnail&&d.thumbnail.source;
+  return src?src.replace(/\/\d+px-/,"/400px-"):src||null;
+}
+function _stripParens(t){return t.replace(/\s*\([^)]*\)\s*$/,"").trim();}
+function _toSentenceCase(t){
+  const w=t.split(" ");if(!w.length)return t;
+  return [w[0]].concat(w.slice(1).map(s=>s===s.toUpperCase()&&s.length<=4?s:s[0].toLowerCase()+s.slice(1))).join(" ");
+}
+function _tryWikiFetch(term){
+  return fetch("https://en.wikipedia.org/api/rest_v1/page/summary/"+encodeURIComponent(term))
+    .then(r=>{if(!r.ok)throw r;return r.json();}).then(d=>{
+      const img=_wikiThumbFromData(d);if(!img)throw"no thumb";return img;
+    });
+}
 function fetchArtworkImages(item,container){
   if(!container||!container.isConnected)return;
   const works=(item.wk||[]).slice(0,3);
@@ -767,22 +782,26 @@ function fetchArtworkImages(item,container){
       }else{itemEl.remove();}
       return;
     }
-    // Queue fetch
+    function _setImg(imgUrl){
+      const existingImgs=container.querySelectorAll('img');
+      const isDup=imgUrl&&Array.from(existingImgs).some(img=>img.src===imgUrl);
+      if(imgUrl&&!isDup&&itemEl.isConnected){
+        itemEl.innerHTML='<img src="'+imgUrl+'" alt="'+esc(work.t)+'" loading="lazy"/><div class="gallery-caption">'+esc(caption)+'</div>';
+      }else{itemEl.remove();}
+    }
+    // Build fallback chain: full title → stripped parens → sentence case
+    const bare=_stripParens(work.t);
+    const sc=_toSentenceCase(bare);
+    const attempts=[work.t];
+    if(bare!==work.t)attempts.push(bare);
+    if(sc!==bare)attempts.push(sc);
     _wikiActive++;
-    fetch("https://en.wikipedia.org/api/rest_v1/page/summary/"+encodeURIComponent(work.t))
-      .then(r=>r.json()).then(d=>{
-        const src=d.thumbnail&&d.thumbnail.source;
-        // Try to get higher res by modifying the thumb URL
-        const hiRes=src?src.replace(/\/\d+px-/,"/400px-"):null;
-        wikiCache["art_"+title]=hiRes||src||null;
-        const imgUrl=hiRes||src;
-        const existingImgs=container.querySelectorAll('img');
-        const isDup=imgUrl&&Array.from(existingImgs).some(img=>img.src===imgUrl);
-        if(imgUrl&&!isDup&&itemEl.isConnected){
-          itemEl.innerHTML='<img src="'+imgUrl+'" alt="'+esc(work.t)+'" loading="lazy"/><div class="gallery-caption">'+esc(caption)+'</div>';
-        }else{itemEl.remove();}
-      }).catch(()=>{wikiCache["art_"+title]=null;itemEl.remove();})
-      .finally(()=>{_wikiActive--;_processWikiQueue();});
+    (function tryNext(i){
+      if(i>=attempts.length){wikiCache["art_"+title]=null;itemEl.remove();_wikiActive--;_processWikiQueue();return;}
+      _tryWikiFetch(attempts[i]).then(imgUrl=>{
+        wikiCache["art_"+title]=imgUrl;_setImg(imgUrl);_wikiActive--;_processWikiQueue();
+      }).catch(()=>tryNext(i+1));
+    })(0);
   });
 }
 
