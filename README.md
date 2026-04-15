@@ -1,6 +1,6 @@
 # Art Movements Timeline
 
-An interactive, single-page timeline of art movements from **~40,000 BCE to the present**.
+An interactive, single-page timeline of art movements from **~40,000 BCE to the present**. Made with the help of Claude.
 
 ## What's Inside
 
